@@ -84,6 +84,51 @@ const showCartProductsList = () => { //arrow function create a message for the p
 
 
 
+function addFirstProduct() {
+
+    let newProductSelection = Number(prompt(showAvailableProductsList()));
+   //console.log(newProductSelection)
+    let selectedProductIndex = --newProductSelection // match selection to product index [0] = p1 ...
+    //console.log(selectedProductIndex)
+    //alert("the selected product is" + productsList[selectedProductIndex])
+
+    selectedProductsList.push(productsList[selectedProductIndex])
+
+}
+
+//addFirstProduct()
+
+
+function additionalProduct() {
+
+    let newProductSelection = Number(prompt(showAvailableProductsList()));
+    //console.log(newProductSelection)
+     let selectedProductIndex = --newProductSelection // match selection to product index [0] = p1 ...
+     selectedProductsList.push(productsList[selectedProductIndex])
+
+}
+
+
+//   Delete  product from List
+//   show porducts on the list with pseudoindex
+//   prompt for number
+//   equal pseudoindex to actual array index 
+//   pass pseudoindex equaled to splice as start position
+
+
+ function deleteProduct (productDeletion ) {
+
+    let selectedProductD = productDeletion
+    let deleteProductIndex = --selectedProductD
+
+    selectedProductsList.splice(deleteProductIndex,1)
+    
+ }
+
+
+ //deleteProduct(prompt(showCartProductsList()))
+
+
 
 
 
