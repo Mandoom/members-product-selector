@@ -49,6 +49,8 @@ function logInPrompt () {
         
     } while (logInCounter > 0 );
 
+    if (logInCounter == 0) { alert("exceeded number of failed login attempts. please try again later")}
+
 }
 
 
