@@ -1,4 +1,4 @@
-/* // User Log In Notification
+// User Log In Notification
 
 const userAgreementAnswer =  () => {
 
@@ -43,122 +43,129 @@ do { //repeat while user has "logInCounter" attempts >= 0
       
     }
     
-} while (logInCounter >= 0 ); */
+} while (logInCounter >= 0 );
+
+// online store sim 
 
 
-// Show user the product list with prices
+const productsList = ["Product1", "Product2", "Product3"]; //existing products
+const priceList = [10, 5, 25]; //price for existing products 
+const selectedProductsList = []; //order products
+let totalPrice = 0; //order total price
+
+////Messages
+
+// Store message
+
+const showAvailableProductsList = () => {
+  //arrow function create a message for the options available
+
+  let messageProductList = " These are the available products: \n"; //create a message
+  for (let i = 0; i < productsList.length; i++) {
+    // adds the products + a new line looping trough the list of products and prices with the same index number
+    messageProductList +=   "-  " + productsList[i] + " - price :$" + priceList[i] + "\n";
+  }
+  return (messageProductList +=
+    "Plese input the number asociated with the product you wish to add product: "); //return the message list where invoked
+};
+
+// Cart Message
+
+
+const showCartProductsList = () => {
+  //arrow function create a message for the products in the cart
+
+  let messageCartList = " These are the products in your cart: \n "; //create a message to display the items in the cart
+
+  for (let i = 0; i < selectedProductsList.length; i++) {
+    // adds the products + a new line looping trough the list of products
+    messageCartList += selectedProductsList[i] + "\n";
+  }
+  return messageCartList;
+};
 
 
 
-const productsList = ["Product1", "Product2", "Product3"]
-const priceList = [10, 5, 25]
-const selectedProductsList = ["p1", "p2"]
-
-let totalPrice = 0;
-
-
-// Store
-
-const showAvailableProductsList = () => { //arrow function create a message for the options available
-
-    let messageProductList = " These are the available products: \n"; //create a message
-    for (let i = 0; i < productsList.length; i++) { // adds the products + a new line looping trough the list of products 
-        messageProductList += productsList[i] + "\n"
-      }
-      return messageProductList += "Plese input the number asociated with the product you wish to add product: "  //return the message list where invoked
-
-}
-
-// Cart
-
-const showCartProductsList = () => { //arrow function create a message for the products in the cart
-
-    let messageCartList = " These are the products in your cart: \n "; //create a message to display the items in the cart
-
-    for (let i = 0; i < selectedProductsList.length; i++) { // adds the products + a new line looping trough the list of products 
-        messageCartList += selectedProductsList[i] + "\n"
-      }
-     return messageCartList
-}
-
-
-
-
-function addFirstProduct() {
-
-    let newProductSelection = Number(prompt(showAvailableProductsList()));
-   //console.log(newProductSelection)
-    let selectedProductIndex = --newProductSelection // match selection to product index [0] = p1 ...
-    //console.log(selectedProductIndex)
-    //alert("the selected product is" + productsList[selectedProductIndex])
-
-    selectedProductsList.push(productsList[selectedProductIndex])
-
+// function to add products
+function addProduct() {
+  let newProductSelection = Number(prompt(showAvailableProductsList()));
+  //console.log(newProductSelection)
+  let selectedProductIndex = --newProductSelection; // match selection to product index [0] = p1 ...
+  //console.log(selectedProductIndex)
+  //alert("the selected product is" + productsList[selectedProductIndex])
+  selectedProductsList.push(productsList[selectedProductIndex]); //add the selected product with the matched index to the array
+  console.log("new product added to cart");
+  let productAdded = productsList[selectedProductIndex];
+  alert(productAdded + ": was added susccefully to your cart"); // alert user of added product
+  let productPrice = priceList[selectedProductIndex]; //create product price var for the selected product
+  totalPrice += productPrice; //sum the price of selected product 
 }
 
 //addFirstProduct()
 
+// Add price
 
-function additionalProduct() {
-
-    let newProductSelection = Number(prompt(showAvailableProductsList()));
-    //console.log(newProductSelection)
-     let selectedProductIndex = --newProductSelection // match selection to product index [0] = p1 ...
-     selectedProductsList.push(productsList[selectedProductIndex])
-
-}
 
 
 //   Delete  product from List
 //   show porducts on the list with pseudoindex
 //   prompt for number
-//   equal pseudoindex to actual array index 
+//   equal pseudoindex to actual array index
 //   pass pseudoindex equaled to splice as start position
 
-
- function deleteProduct (productDeletion ) {
-
-    let selectedProductD = productDeletion
-    let deleteProductIndex = --selectedProductD
-
-    selectedProductsList.splice(deleteProductIndex,1)
-    
- }
-
-
- //deleteProduct(prompt(showCartProductsList()))
+function deleteProduct(productDeletion) {
+  let selectedProductD = productDeletion;
+  let deleteProductIndex = --selectedProductD;
+  let deletedProducts = selectedProductsList.splice(deleteProductIndex, 1);
+  alert("The product: " + deletedProducts[0] + " was deleted from the cart ");
+  let dProductPrice = priceList[deleteProductIndex]; //create product price var for the selected product
+  totalPrice -= productPrice; // //substract the price of selected product
+}
+//deleteProduct(prompt(showCartProductsList()))
 
 
+let shopControl = true; // flag for store loop
 
+function store() {
+  let storeSelection;
+ 
+  do {
+    storeSelection = prompt("To add products to your cart use '+' \nTo remove products from your car use '-' \nTo see your cart use '/' \n Use '-1' to cancel" ); // action for this iteration
 
+    if (storeSelection === null) { //if user cancels or hits esc
+        alert("Input canceled. Exiting the store.");
+        break;
+    }
 
+    switch (storeSelection) {
+      case "+": // to add products
+        addProduct();
+        break;
 
+      case "-": // to delete products
+        alert("que producto quieres remover");
+        deleteProduct(prompt( showCartProductsList() + " Enter the number of the product you wish to remove"));
+        break;
 
-/* 
-function showProducts() {
+      case "/": // go to cart
+        paymentControls()
+        break;
 
-    const showProductList = " These are the available products: \n"; //base for allert message
-    
-    for (let i = 0; i < productList.length; i++) { // adds the products + a new line looping trough the list of products 
-        showProductList += productList[i]
-
-      }
-
-    prompt(showProductList)
-
-
-
-    do {
-  
+        case "-1":
+            alert("canceled. please visit us again later")
+            shopControl = false;
+        break;
 
         
 
-        prompt("Select Your Products")
-        
-    } while (condition);
-
+      default:
+        alert("incorrect input, please try again ")
+    }
+  } while (shopControl == true);
 }
 
-const selectedProducts = [] // global so function can access and push arrayt elements to it with scope functions and to make accesible the array to other functions
- */
+store();
+
+//let addMoreProducts = confirm("add more products (Yes = confirm) No = (Cancel)")
+
 
