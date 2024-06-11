@@ -18,7 +18,7 @@ let userLogInConscent = userAgreementAnswer()
 console.log( "user selected " + userLogInConscent)
 
 /////  User Log in  Process
-let loggedIn = false
+let loggedIn = false //user is logged out by default
 
 let logInCounter = 3;  // user has three attempts to log in
 
@@ -49,7 +49,7 @@ function logInPrompt () {
         
     } while (logInCounter > 0 );
 
-    if (logInCounter == 0) { alert("exceeded number of failed login attempts. please try again later")}
+    if (logInCounter == 0) { alert("exceeded number of failed login attempts. please try again later")} // alert the user has to wait to log in 
 
 }
 
@@ -76,7 +76,7 @@ const showAvailableProductsList = () => {
   let messageProductList = " These are the available products: \n"; //create a message
   for (let i = 0; i < productsList.length; i++) {
     // adds the products + a new line looping trough the list of products and prices with the same index number
-    messageProductList +=   "-  " + productsList[i] + " - price :$" + priceList[i] + "\n";
+    messageProductList +=  (i + 1) + "-  " + productsList[i] + " - price :$" + priceList[i] + "\n"; // use the i starting on the 0 and add 1 // fake indexes
   }
   return (messageProductList +=
     "Plese input the number asociated with the product you wish to add product: "); //return the message list where invoked
@@ -92,7 +92,7 @@ const showCartProductsList = () => {
 
   for (let i = 0; i < selectedProductsList.length; i++) {
     // adds the products + a new line looping trough the list of products
-    messageCartList += selectedProductsList[i] + "\n";
+    messageCartList += (i + 1) + "-  " + selectedProductsList[i] + " - price :$" + priceList[i] + "\n";  // use the i starting on the 0 and add 1 // fake indexes
   }
   return messageCartList;
 };
@@ -102,9 +102,9 @@ const showCartProductsList = () => {
 // function to add products
 function addProduct() {
   let newProductSelection = Number(prompt(showAvailableProductsList()));
-  //console.log(newProductSelection)
+  console.log(newProductSelection) // a newproduct was selected
   let selectedProductIndex = --newProductSelection; // match selection to product index [0] = p1 ...
-  //console.log(selectedProductIndex)
+  console.log(selectedProductIndex) // confirmation of the index generated
   //alert("the selected product is" + productsList[selectedProductIndex])
   selectedProductsList.push(productsList[selectedProductIndex]); //add the selected product with the matched index to the array
   console.log("new product added to cart");
@@ -126,11 +126,11 @@ function addProduct() {
 //   equal pseudoindex to actual array index
 //   pass pseudoindex equaled to splice as start position
 
-function deleteProduct(productDeletion) {
+function deleteProduct(productDeletion) { //using parameters for splice
   let selectedProductD = productDeletion;
   let deleteProductIndex = --selectedProductD;
   let deletedProducts = selectedProductsList.splice(deleteProductIndex, 1);
-  alert("The product: " + deletedProducts[0] + " was deleted from the cart ");
+  alert("The product: " + deletedProducts[0] + " was deleted from the cart "); // alerting the array generated bny splice for removed elements
   let dProductPrice = priceList[deleteProductIndex]; //create product price var for the selected product
   totalPrice -= productPrice; // //substract the price of selected product
 }
@@ -151,14 +151,14 @@ let shopControl = true; // flag for store loop
               break;
           }
       
-          switch (storeSelection) {
+          switch (storeSelection) { // store option controls
             case "+": // to add products
               addProduct();
               break;
       
             case "-": // to delete products
-              alert("que producto quieres remover");
-              deleteProduct(prompt( showCartProductsList() + " Enter the number of the product you wish to remove"));
+              
+              deleteProduct(prompt( showCartProductsList() + " Enter the number of the product you wish to remove from the cart"));
               break;
       
             case "/": // go to cart
@@ -184,10 +184,6 @@ if (loggedIn === true) {
     
 }
 
-
-
-
-//let addMoreProducts = confirm("add more products (Yes = confirm) No = (Cancel)")
 
 function paymentControls() {
 
