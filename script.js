@@ -17,33 +17,44 @@ const userAgreementAnswer =  () => {
 let userLogInConscent = userAgreementAnswer()
 console.log( "user selected " + userLogInConscent)
 
-
-
 /////  User Log in  Process
+let loggedIn = false
 
 let logInCounter = 3;  // user has three attempts to log in
 
+if (userLogInConscent === true) {
+    logInPrompt()
+}
 
+function logInPrompt () {
+    do { //repeat while user has "logInCounter" attempts >= 0
 
-do { //repeat while user has "logInCounter" attempts >= 0
-
-    const userName = prompt("Username:"); 
-    const password = prompt("Paswrod: "); 
-
-    if (userName == "Client 1" && password == "pass1234") {
-
-        alert("Welcome to our store " + userName)
-        console.log("User loged in successfull")
-        break // if log in successfull break the loop
-        
-    } else {
-
-        logInCounter-- //decrease login attempts counter
-        alert("log in failed " + logInCounter + " attempts left")
-      
-    }
+        const userName = prompt("Username:"); 
+        const password = prompt("Paswrod: "); 
     
-} while (logInCounter >= 0 );
+        if (userName == "Client 1" && password == "pass1234") {
+    
+            alert("Welcome to our store " + userName)
+            console.log("User loged in successfull")
+            loggedIn = true;
+            break // if log in successfull break the loop
+            
+            
+        } else {
+    
+            --logInCounter //decrease login attempts counter
+            alert("log in failed " + logInCounter + " attempts left")
+          
+        }
+        
+    } while (logInCounter > 0 );
+
+}
+
+
+
+   
+
 
 // online store sim 
 
@@ -126,45 +137,53 @@ function deleteProduct(productDeletion) {
 
 let shopControl = true; // flag for store loop
 
-function store() {
-  let storeSelection;
- 
-  do {
-    storeSelection = prompt("To add products to your cart use '+' \nTo remove products from your car use '-' \nTo see your cart use '/' \n Use '-1' to cancel" ); // action for this iteration
 
-    if (storeSelection === null) { //if user cancels or hits esc
-        alert("Input canceled. Exiting the store.");
-        break;
-    }
-
-    switch (storeSelection) {
-      case "+": // to add products
-        addProduct();
-        break;
-
-      case "-": // to delete products
-        alert("que producto quieres remover");
-        deleteProduct(prompt( showCartProductsList() + " Enter the number of the product you wish to remove"));
-        break;
-
-      case "/": // go to cart
-        paymentControls()
-        break;
-
-        case "-1":
-            alert("canceled. please visit us again later")
-            shopControl = false;
-        break;
-
-        
-
-      default:
-        alert("incorrect input, please try again ")
-    }
-  } while (shopControl == true);
+    function store() {
+        let storeSelection;
+       
+        do {
+          storeSelection = prompt("To add products to your cart use '+' \nTo remove products from your car use '-' \nTo see your cart use '/' \n Use '-1' to cancel" ); // action for this iteration
+      
+          if (storeSelection === null) { //if user cancels or hits esc
+              alert("Input canceled. Exiting the store.");
+              break;
+          }
+      
+          switch (storeSelection) {
+            case "+": // to add products
+              addProduct();
+              break;
+      
+            case "-": // to delete products
+              alert("que producto quieres remover");
+              deleteProduct(prompt( showCartProductsList() + " Enter the number of the product you wish to remove"));
+              break;
+      
+            case "/": // go to cart
+              paymentControls()
+              break;
+      
+              case "-1":
+                  alert("canceled. please visit us again later")
+                  shopControl = false;
+              break;
+      
+              
+      
+            default:
+              alert("incorrect input, please try again ")
+          }
+        } while (shopControl == true);
+      }
+      
+if (loggedIn === true) {
+    store();
+} else {
+    
 }
 
-store();
+
+
 
 //let addMoreProducts = confirm("add more products (Yes = confirm) No = (Cancel)")
 

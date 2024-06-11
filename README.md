@@ -3,17 +3,11 @@
 Project to simulate a day to day commercial activity: in this case we want to simulate:
 
 
-
-User flow:
-
-User login: three attempts 
-Show Products
-User Selects 1 
-ask for more products
-        * : addnew product
-        / : go to cart
-        
-or multiple products
-return to the user their selection of products 
-retuern to the user total price for the selected products
-if products selected >= 3 user
+As a membership store, your users need to be members before they can shop your products.
+after log in with limited attempts 
+show users your store
+show product list
+add products to cart 
+remove products from cart
+show cart
+prceed to payments
