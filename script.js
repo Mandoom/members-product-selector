@@ -168,4 +168,33 @@ store();
 
 //let addMoreProducts = confirm("add more products (Yes = confirm) No = (Cancel)")
 
+function paymentControls() {
 
+    let cartConfirmation = confirm("proceed to payment \n" + showCartProductsList() + "\nTotal: $" + totalPrice + "\n hit cancel to go back to the store");
+
+
+    if (cartConfirmation) {
+
+            if( selectedProductsList.length < 1) {
+                alert("Please add products before continuing");
+        
+            }   else if ( (selectedProductsList.length > 0 && selectedProductsList.length < 4) ) {
+                alert("You'll receive order summary and confirmation in your email with instructions for payment")
+                shopControl = false;
+        
+            }  else if (selectedProductsList.length >= 4  ) {
+        
+            alert("you selected " + selectedProductsList.length + " products. you get a discvount from 10%")
+            let discountPrice =  totalPrice - (totalPrice * 0.1)
+            alert("your new total is: $" + discountPrice)
+            alert(    "You'll receive order summary and confirmation in your email with instructions for payment"  );      
+            shopControl = false;
+        
+        
+            } 
+
+    } else {
+        alert("Going back to the store");
+    }
+
+}
