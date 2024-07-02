@@ -1,0 +1,11 @@
+.cartProductBox {
+    display:flex;
+    gap:20;
+    justify-content: space-between;
+     
+}
+
+ul#storeProductsList {
+    display: flex;
+    gap: 20px;
+}
