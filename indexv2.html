@@ -7,11 +7,12 @@
     <title>Poke Store</title>
 </head>
 <body>
-    <div class="overlay">
+    <div id="overlay">
         <div class="blankPanel">
             <div class="productPanel"></div>
-            <div class="cartPanel">
+            <div id="cartPanel">
                 <div class="container">
+                    <div id="closeCartIcon"><img src="images/cerrar-simbolo-de-boton-circular.png" alt=""></div>
                     <h2>Your cart</h2>
                     <div class="cartHeaders">
                         <div class="cartItem">
@@ -34,7 +35,25 @@
                  
                     </div>
 
+                    <div class="container">
+                        <div id="cartTotals">
+                
+                            <div id="pricetotal"></div>
+                        </div>
+                    </div>
+
                     <div class="payment Options">
+                        <div class="container">
+                            <div id="paymentButton"></div>
+                            <div id="clearButton"></div>
+                        </div>
+
+                        <div class="container">
+                            <form id="paymentForm">
+                
+                            </form>
+                            
+                        </div>
 
                     </div>
                </div>
@@ -44,9 +63,11 @@
     </div>
     <nav>
         <div class="nav">
-            <div class="logo"></div>
-            <div class="trainerinfo"></div>
-            <div class="tools"></div>
+            <div class="logo"><img src="/images/pokeballlogo.png" alt=""></div>
+            
+            <div id="cartIcon">
+                <img src="images/shopping-cart_6269429.png" alt="">
+            </div>
         </div>
     </nav>
     <main>
@@ -55,21 +76,22 @@
             <div class="products">
                <div class="container">
                     <h2>Selected products for your Adventures!</h2>
+                    <h3>Selected Category: <span id="categoryNames" >All Categories</span></h3>
                     <div id="storeProductList">
                     
                     </div>
 
-                    <div class="productCategorySelection">
-
-                    </div>
                </div>
             </div>
           
         </div>
     </main>
-    <footer></footer>
+    <footer>
+        <div id="productCategorySelection">
 
-    
+        </div></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="store.js" async></script>    
 </body>
 

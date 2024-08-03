@@ -96,13 +96,8 @@ let cart = []
 function initializeCartFromLocalStorage() {
     const storedCart = localStorage.getItem("cart")
     if (storedCart){
-        cart = JSON.parse(storedCart)
-        cart.forEach(product => {
-
-            cartTotalPrice += product.price
-            ++cartTotalProducts
-           
-        });
+        Cart.cartArray = JSON.parse(storedCart)
+        sumTotals()
 
         if (cart.length > 0) {
             displayPayment();
@@ -175,13 +170,6 @@ function displayStock(){
     })
 
 } 
-
-
-// 
-
-
-
-
 
 ////// add to cart
 
@@ -443,7 +431,6 @@ if (cart.length > 0) {
 
 
 
-initializeCartFromLocalStorage();
 displayStock();
 displayCart();
 displayCartTotals();
