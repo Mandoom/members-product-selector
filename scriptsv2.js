@@ -70,12 +70,14 @@ function loginCredentials(){
 
 function checkForStoredUser() {
     const loggedIn = JSON.parse(localStorage.getItem("loggedin"));
+    
     const role = JSON.parse(localStorage.getItem("role"));
     if (!loggedIn || !role) {
         loginCredentials();
     } else {
         console.log("User already logged in as " + role);
     }
+    console.log(loggedIn)
 }
 
 
@@ -121,7 +123,7 @@ class Product { //create products with class
         Product.productsArray.push(this) // self reference usage within a class
     }
     productDiscount() {
-        this.price = this.price - ( this.price * 0.1) 
+        this.price = this.price - (this.price * 0.1) 
     }
 }
 
@@ -141,7 +143,7 @@ console.log(stock)
 
 
 ///////// DISPLAY STOCK
-const productListComponent = document.getElementById("storeProductsList")
+const productListComponent = document.getElementById("storeProductList")
 
 function displayStock(){
     stock.forEach((product) => { // CRETAE HTMNL STRUCTURE FOR EACH ELEMENT OF THE "STOCK ARRAY"
@@ -173,6 +175,13 @@ function displayStock(){
     })
 
 } 
+
+
+// 
+
+
+
+
 
 ////// add to cart
 
