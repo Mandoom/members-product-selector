@@ -10,25 +10,20 @@ class StockProducts {
 
     static stockArray = [] //to create products
     static categoryNameArray = ["All"] // for category names that will be used for filter
-
     constructor(singleItemData){
         this.id = singleItemData.id;
-        // find specific language entry
-        const englishNameEntry = singleItemData.names.find(nameEntry => nameEntry.language.name === "en");
+        const englishNameEntry = singleItemData.names.find(nameEntry => nameEntry.language.name === "en");  // find specific language entry
           if (englishNameEntry) {
             this.name = englishNameEntry.name;
         } else {
             this.name = singleItemData.name;
         };
-
         this.description = singleItemData.effect_entries.effect 
-
         this.price = singleItemData.cost;
         this.category = singleItemData.category.name;
         this.img = singleItemData.sprites.default;
-        if (this.price > 0) {
+        if (this.price > 0) { // from this point, discard if   price is lower to 0 
             StockProducts.stockArray.push(this);
-
         } //make conditional  
         if (!StockProducts.categoryNameArray.includes(this.category)) {
             
@@ -219,15 +214,15 @@ async function getProducts() {
             })
             return Promise.all(fetchItemPromises)
         }) 
-        .then( () => { console.log(StockProducts.stockArray)     } ) //set stock to local storage
+        .then( () => { console.log(StockProducts.stockArray)     } )
         .catch(error => {
             console.log("error: " + error)
             })
     
         .finally(() => {
             console.log("finished fetch operations")
-            localStorage.setItem('stock', JSON.stringify(StockProducts.stockArray));
-            localStorage.setItem('cat', JSON.stringify(StockProducts.categoryNameArray))
+            localStorage.setItem('stock', JSON.stringify(StockProducts.stockArray));  //set stock to local storage
+            localStorage.setItem('cat', JSON.stringify(StockProducts.categoryNameArray)) //setCsategories ASrray to local Storage
             localStorageCheckStock = localStorage.getItem("stock") !== null
             console.log(localStorageCheckStock)
             displayStock()
@@ -580,7 +575,7 @@ cartIcon.addEventListener("click", () => {
 })
 
 closeCartIcon.addEventListener("click", () => {
-    cartPanel.classList.toggle("active")
+    cartPanel.classList.toggle("active")          
     overlay.classList.toggle("active")
     
 })

@@ -3,60 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member Produc Selector</title>
     <link rel="stylesheet" href="style.css">
-    
+    <title>Poke Store</title>
 </head>
 <body>
-    <section class="store">
-        <div class="container">
-            <h1>Welcome to our store</h1>
-            <h2>Check our available products</h2>
-            <ul id="storeProductsList">
+    <div id="overlay">
+        <div class="blankPanel">
+            <div class="productPanel"></div>
+            <div id="cartPanel">
+                <div class="container">
+                    <div id="closeCartIcon"><img src="images/cerrar-simbolo-de-boton-circular.png" alt=""></div>
+                    <h2>Your cart</h2>
+                    <div class="cartHeaders">
+                        <div class="cartItem">
+                            <p class="producTitle">Product Name</p>
+                            <div class="cartProductdDetails">
+                                <div class="price detail-children">
+                                    <p>Price</p>
+                                </div>
+    
+                                <div class="quantity detail-children">
+                                    <p>Quantity</p>
+                                </div>
+    
+                               
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <div id="cartProductList">
+                 
+                    </div>
 
+                    <div class="container">
+                        <div id="cartTotals">
+                
+                            <div id="pricetotal"></div>
+                        </div>
+                    </div>
 
-            </ul>
-        </div>
-    </section>
+                    <div class="payment Options">
+                        <div class="container">
+                            <div id="paymentButton"></div>
+                            <div id="clearButton"></div>
+                        </div>
 
+                        <div class="container">
+                            <form id="paymentForm">
+                
+                            </form>
+                            
+                        </div>
 
-    <section class="notificationBar">
-        <div class="container"></div>
-    </section>
-
-    <section class="cartSection">
-        <div class="container">
-            <h2>Shopping Cart</h2>
-            <ul id="cartProductList">
-
-            </ul>
-            <div class="container">
-                <div id="cartTotals">
-                    <div id="itemstotal"></div>
-                    <div id="pricetotal"></div>
-                </div>
+                    </div>
+               </div>
             </div>
-
         </div>
-    </section>
-    <section class="paymentSection">
-        <div class="container">
-            <div id="paymentButton"></div>
-            <div id="clearButton"></div>
-        </div>
-    </section>
 
-    <section class="formSection">
-        <div class="container">
-            <form id="paymentForm">
-
-            </form>
+    </div>
+    <nav>
+        <div class="nav">
+            <div class="logo"><img src="/images/pokeballlogo.png" alt=""></div>
             
+            <div id="cartIcon">
+                <img src="images/shopping-cart_6269429.png" alt="">
+            </div>
         </div>
-    </section>
-   
+    </nav>
+    <main>
+        <div class="content">
+         
+            <div class="products">
+               <div class="container">
+                    <h2>Selected products for your Adventures!</h2>
+                    <h3>Selected Category: <span id="categoryNames" >All Categories</span></h3>
+                    <div id="storeProductList">
+                    
+                    </div>
 
+               </div>
+            </div>
+          
+        </div>
+    </main>
+    <footer>
+        <div id="productCategorySelection">
 
-    <script src="store.js" asycn></script>
+        </div></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="store.js" async></script>    
 </body>
+
 </html>
